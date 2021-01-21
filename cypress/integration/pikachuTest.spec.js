@@ -1,4 +1,4 @@
-describe("API Testing with Cypress", () => {
+describe("Validates Key Information About Pikachu From The Pokemon API", () => {
   beforeEach(() => {
     cy.request("https://pokeapi.co/api/v2/pokemon/25").as("pikachu")
   })
@@ -34,7 +34,7 @@ describe("API Testing with Cypress", () => {
       .should("include", { id: 25 })
   })
 
-  it("checks the moves length", () => {
+  it("checks the number of different moves Pikachu can do", () => {
     cy.get("@pikachu")
       .its("body.moves.length")
       .should("equal", 81)
@@ -76,7 +76,7 @@ describe("API Testing with Cypress", () => {
       .should("equal", "oran-berry")
   })
 
-  it("validates the name of the second item among the held items ", () => {
+  it("validates the name of the second item among the held items", () => {
     cy.get("@pikachu")
       .its("body.held_items.1.item.name")
       .should("equal", "light-ball")
