@@ -7,7 +7,7 @@ describe("Validates Key Information About Pikachu From The Pokemon API", () => {
     cy.get("@pikachu")
       .its("headers")
       .its("content-type")
-      .should("include", "application/json; charset=utf-8")
+      .should("equal", "application/json; charset=utf-8")
   })
 
   it("Validate the status code", () => {
@@ -18,20 +18,20 @@ describe("Validates Key Information About Pikachu From The Pokemon API", () => {
 
   it("Validate the pokemon's name", () => {
     cy.get("@pikachu")
-      .its("body")
-      .should("include", { name: "pikachu" })
+      .its("body.name")
+      .should("equal", "pikachu")
   })
 
   it("checks the height", () => {
     cy.get("@pikachu")
-      .its("body")
-      .should("include", { height: 4 })
+      .its("body.height")
+      .should("equal", 4)
   })
 
   it("checks the id", () => {
     cy.get("@pikachu")
-      .its("body")
-      .should("include", { id: 25 })
+      .its("body.id")
+      .should("equal", 25)
   })
 
   it("checks the number of different moves Pikachu can do", () => {

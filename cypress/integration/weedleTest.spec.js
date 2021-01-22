@@ -7,7 +7,7 @@ describe("Validate key information about Weedle From The Pokemon API", () => {
     cy.get("@weedle")
       .its("headers")
       .its("content-type")
-      .should("include", "application/json; charset=utf-8")
+      .should("equal", "application/json; charset=utf-8")
   })
 
   it("Validate the status code", () => {
@@ -18,20 +18,20 @@ describe("Validate key information about Weedle From The Pokemon API", () => {
 
   it("Validate the pokemon's name", () => {
     cy.get("@weedle")
-      .its("body")
-      .should("include", { name: "weedle" })
+      .its("body.name")
+      .should("equal", "weedle")
   })
 
   it("checks the height", () => {
     cy.get("@weedle")
-      .its("body")
-      .should("include", { height: 3 })
+      .its("body.height")
+      .should("equal", 3)
   })
 
   it("checks the id", () => {
     cy.get("@weedle")
-      .its("body")
-      .should("include", { id: 13 })
+      .its("body.id")
+      .should("equal", 13)
   })
 
   it("checks the number of different moves Weedle can do", () => {
@@ -58,7 +58,11 @@ describe("Validate key information about Weedle From The Pokemon API", () => {
       .should("equal", "electroweb")
   })
 
-  // TODO add last move URL
+  it("validates last move url", () => {
+    cy.get("@weedle")
+      .its("body.moves.3.move.url")
+      .should("equal", "https://pokeapi.co/api/v2/move/527/")
+  })
 
   it("validates the number of held items that Weedle has", () => {
     cy.get("@weedle")
